@@ -113,26 +113,26 @@ def main(playerdef="R,R,G,S,SM", max_card=104, starting_cards=10, rows=4, takes=
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='An (parameterized) implementation of 6 nimmt.')
-    parser.add_argument('-c' '--starting-cards', dest='starting_cards', action='store', type=int, default=10,
-                       help='defines how many cards players start with')
-    parser.add_argument('-m' '--max-card', dest='max_card', action='store', type=int, default=104,
-                       help='defines what the highest card in the game is')
-    parser.add_argument('-r' '--rows', dest='rows', action='store', type=int, default=4,
-                       help='defines how many rows there are in the game')
-    parser.add_argument('-t' '--takes', dest='takes', action='store', type=int, default=6,
-                       help='defines which card takes a row')
-    parser.add_argument('-q' '--quiet', dest='quiet', action='store_false', default=True,
-                       help='turn off output except for the summary')
-    parser.add_argument('-n' '--iterations', dest='iterations', action='store', type=int, default=1,
-                       help='how many times the game should run')
-    parser.add_argument('-p' '--players', dest='players', action='store', default="R,R,R,R,R",
+    parser.add_argument('-c', '--starting-cards', dest='starting_cards', action='store', type=int, default=10,
+                       help='defines how many cards players start with (default: 10)')
+    parser.add_argument('-m', '--max-card', dest='max_card', action='store', type=int, default=104,
+                       help='defines what the highest card in the game is (default: 104)')
+    parser.add_argument('-r', '--rows', dest='rows', action='store', type=int, default=4,
+                       help='defines how many rows there are in the game (default: 4)')
+    parser.add_argument('-t', '--takes', dest='takes', action='store', type=int, default=6,
+                       help='defines which card takes a row (default: 6)')
+    parser.add_argument('-q', '--quiet', dest='quiet', action='store_false', default=True,
+                       help='turn off output except for the summary (default: True)')
+    parser.add_argument('-n', '--iterations', dest='iterations', action='store', type=int, default=1,
+                       help='how many times the game should run (default: 1)')
+    parser.add_argument('-p', '--players', dest='players', action='store', default="R,R,R,R,R",
                        help="""define how may and which player types should play. Currently available types are:
     R: Random player
     G: Greedy player (plays card with minimum distance to board rows)
     S: Shortest row player (plays card that fit in the shortest row on the board)
     H: Human player (asks user for input)
     
-For any AI player, an "M" can be appended to make that player minimize the scores of rows they have to take when they play the lowest card. The players should be separated by comma.""")
+For any AI player, an "M" can be appended to make that player minimize the scores of rows they have to take when they play the lowest card. The players should be separated by comma. (default: "R,R,R,R,R", i.e. 5 random players)""")
 
     args = parser.parse_args()
     

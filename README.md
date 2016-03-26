@@ -12,30 +12,37 @@ To answer these questions, I wrote this simple python implementation of the game
 
 # Usage
 
-usage: main.py [-h] [-c--starting-cards STARTING_CARDS]
-               [-m--max-card MAX_CARD] [-r--rows ROWS] [-t--takes TAKES]
-               [-q--quiet] [-n--iterations ITERATIONS] [-p--players PLAYERS]
+usage: main.py [-h] [-c STARTING_CARDS] [-m MAX_CARD] [-r ROWS] [-t TAKES]
+               [-q] [-n ITERATIONS] [-p PLAYERS]
 
 An (parameterized) implementation of 6 nimmt.
 
 optional arguments:
-  -h, --help              show this help message and exit
-  -c, --starting-cards STARTING_CARDS
-                          defines how many cards players start with (default: 10)
-  -m, --max-card MAX_CARD
-                          defines what the highest card in the game is (default: 104)
-  -r, --rows ROWS         defines how many rows there are in the game (default: 4)
-  -t, --takes TAKES       defines which card takes a row (default: 6)
-  -q, --quiet             turn off output except for the summary
-  -n, --iterations ITERATIONS
-                          how many times the game should run
-  -p, --players PLAYERS   define how may and which player types should play.
-                          Currently available types are: 
+  -h, --help            show this help message and exit
+  -c STARTING_CARDS, --starting-cards STARTING_CARDS
+                        defines how many cards players start with (default:
+                        10)
+  -m MAX_CARD, --max-card MAX_CARD
+                        defines what the highest card in the game is (default:
+                        104)
+  -r ROWS, --rows ROWS  defines how many rows there are in the game (default:
+                        4)
+  -t TAKES, --takes TAKES
+                        defines which card takes a row (default: 6)
+  -q, --quiet           turn off output except for the summary (default: True)
+  -n ITERATIONS, --iterations ITERATIONS
+                        how many times the game should run (default: 1)
+  -p PLAYERS, --players PLAYERS
+                        define how may and which player types should play.
+                        Currently available types are: 
                           R: Random player 
                           G: Greedy player (plays card with minimum distance to board rows) 
                           S: Shortest row player (plays card that fit in the shortest row on the board) 
                           H: Human player (asks user for input) 
                         
-                          For any AI player, an "M" can be appended to make that player minimize the scores of
-                          rows they have to take when they play the lowest card.
-                          The players should be separated by comma. (default: "R,R,R,R,R", i.e. 5 random players)
+                        For any AI player, an "M" can be
+                        appended to make that player minimize the scores of
+                        rows they have to take when they play the lowest card.
+                        The players should be separated by comma. (default:
+                        "R,R,R,R,R", i.e. 5 random players)
+
