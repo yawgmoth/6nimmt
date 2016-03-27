@@ -72,15 +72,15 @@ class Game(object):
         return [p.get_score() for p in self.players]
         
 def main(playerdef="R,R,G,S,SM", max_card=104, starting_cards=10, rows=4, takes=6, output=True, iterations=1):
-    if iterations > 1:
-        results = {}
-        ptypes = []
-        presults = []
-        for p in playerdef.split(","):
-            p = p.strip()
-            results[p] = (0,0)
-            presults.append((0,0))
-            ptypes.append(p)
+    
+    results = {}
+    ptypes = []
+    presults = []
+    for p in playerdef.split(","):
+        p = p.strip()
+        results[p] = (0,0)
+        presults.append((0,0))
+        ptypes.append(p)
 
     for i in xrange(iterations):
     
