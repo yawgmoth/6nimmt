@@ -13,7 +13,11 @@ def get_value(card):
     return 1
 
 class Player(object):
-    def __init__(self):
+    def __init__(self, max_card=104, starting_cards=10, rows=4, takes=6):
+        self.max_card = max_card
+        self.starting_cards = starting_cards
+        self.rows = rows
+        self.takes = takes
         self.cards = []
         self.tricks = []
     def get_score(self):
@@ -88,4 +92,26 @@ def make_min_player(which):
         pass
     return MinPlayer
     
+def make_opportunistic_player(which):
+    class OpportunisticPlayer(Player):
+        def __init__(self, max_card=6, starting_cards=104, rows=4, takes=6):
+            self.inner = which(max_card=max_card, starting_cards=starting_cards, rows=rows, takes=takes)
+            super(OpportunisticPlayer, self).__init__(max_card=max_card, starting_cards=starting_cards, rows=rows, takes=takes)
+        def make_choice(self, board):
+            for b in board:
+                if sum(map(get_value, b)) <= 1:
+                    c = min(self.cards)
+                    bmin = min(map(lambda r: r[-1], board))
+                    if c < bmin:
+                        return c
+            self.inner.cards = self.cards
+            self.inner.tricks = self.tricks
+            return self.inner.make_choice(board)
+        def ask_which(self, board, card):
+            self.inner.cards = self.cards
+            self.inner.tricks = self.tricks
+            return self.inner.ask_which(board, card)
+    return OpportunisticPlayer
+    
 PLAYER_TYPES = {"R": Player, "G": GreedyPlayer, "S": ShortestRowPlayer, "H": HumanPlayer}
+MIXINS = {"M": make_min_player, "O": make_opportunistic_player}

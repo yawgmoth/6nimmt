@@ -87,9 +87,10 @@ def main(playerdef="R,R,G,S,SM", max_card=104, starting_cards=10, rows=4, takes=
         players = []
         for p in ptypes:
             pclass = PLAYER_TYPES[p[0]]
-            if len(p) > 1 and p[1] == "M":
-                pclass = make_min_player(pclass)
-            players.append(pclass())
+            if len(p) > 1:
+                for mod in p[1:]:
+                    pclass = MIXINS[mod](pclass)
+            players.append(pclass(max_card=max_card, starting_cards=starting_cards, rows=rows, takes=takes))
         
         g = Game(players, max_card=max_card, starting_cards=starting_cards, rows=rows, takes=takes, output=output)
         
